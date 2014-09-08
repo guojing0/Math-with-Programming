@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 """
-The program is to calculate the letter frequency of a text, which is imported from http://norvig.com/big.txt
+The program is to calculate the letter frequency of a text,
+which is imported from http://norvig.com/big.txt
 
 Author: Jing Guo
 Email: dev.guoj@gmail.com
