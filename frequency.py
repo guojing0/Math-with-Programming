@@ -1,8 +1,12 @@
-# frequency.py is to calculate the letter frequency of a essay.
-# The sample imported here is from http://norvig.com/big.txt
-# The result may not be simliar to what you read from Wikipedia,
-# but you can do it on your own and import different essays.
-# BTW, what you see is NOT what I input originally, it's simplified.
+#!/usr/bin/env python
+
+"""
+The program is to calculate the letter frequency of a text, which is imported from http://norvig.com/big.txt
+
+Author: Jing Guo
+Email: dev.guoj@gmail.com
+Blog: guoj.org
+"""
 
 words = file('source.txt').read().lower()
 
@@ -14,10 +18,9 @@ def run():
     leng = len(material) * 1.0
 
     for letter in alphabet:
-	print '%s %.3f' % (letter, (material.count(letter)/leng*100))
+        print '%s %.3f%%' % (letter, (material.count(letter)/leng*100))
 
 if __name__ == '__main__':
-    print "Jing Guo code the program, it's Ver 1.0, you are free to use."
     run()
 
 # Wikipedia link: http://en.wikipedia.org/wiki/Letter_frequency
