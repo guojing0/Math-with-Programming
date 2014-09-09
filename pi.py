@@ -11,6 +11,8 @@ Blog: guoj.org
 from math import pi, pow, sqrt
 from random import uniform
 
+__all__ ['Pi', 'estimate', 'info']
+
 class Pi:
 
     def __init__(self):
