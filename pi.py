@@ -25,10 +25,9 @@ class Pi:
         return dist
 
     def estimate(self):
+        self.times += 1
         self.coordinate_x = uniform(-0.5, 0.5)
         self.coordinate_y = uniform(-0.5, 0.5)
-
-        self.times += 1
 
         if Pi.distance(self, self.coordinate_x, self.coordinate_y) <= 0.5:
             self.score += 1
