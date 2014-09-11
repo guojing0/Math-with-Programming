@@ -34,3 +34,5 @@
 ; and repeat setting the value of x
 ; or a more convenient way:
 ; (sqrt 4) => (repeated-newton-method (lambda (x) (- (* x x) 4)) 1 10)
+
+;;; ITER-COUNTER function needs constructing
