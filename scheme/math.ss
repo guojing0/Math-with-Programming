@@ -15,12 +15,21 @@
 ; f'(5) => ((deriv (lambda (x) (* x x x))) 5)
 ; f''(5) => ((deriv (deriv (lambda (x) (* x x x)))) 5)
 
-;; NEWTON-METHOD needs reconstructing
 (define newton-method
   (lambda (f)
     (lambda (x) ; x is the initial guess
       (- x (/ (f x) ((deriv f) x))))))
 
+(define repeated-newton-method
+  (lambda (f init times)
+    (if (zero? times)
+	init
+	(repeated-newton-method f
+				((newton-method f) init)
+				(1- times)))))
+
 ; Examples:
 ; (sqrt 2) => ((newton-method (lambda (x) (- (* x x) 2))) 1)
 ; and repeat setting the value of x
+; or a more convenient way:
+; (sqrt 2) => (repeated-newton-method (lambda (x) (- (* x x) 2)) 1 10)
