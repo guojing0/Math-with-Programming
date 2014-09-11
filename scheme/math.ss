@@ -20,21 +20,20 @@
     (lambda (x) ; x is the initial guess
       (- x (/ (f x) ((deriv f) x))))))
 
-;; REPEATED-NEWTON-METHOD needs reconstruction
 (define repeated-newton-method
   (lambda (f init times)
-    (if (= init ((newton-method f) init)) ; if the two equal then stop
-	init
-	(if (zero? times)
-	    init
-	    (if (= init ((newton-method f) init))
-		init
-		(repeated-newton-method f
-					((newton-method f) init)
-					(1- times)))))))
+    (letrec ((tolerance (lambda (v1 v2)
+			  (< (abs (- v1 v2)) 1e-16))))
+      (if (tolerance init ((newton-method f) init))
+	  init
+	  (if (zero? times)
+	      init
+	      (repeated-newton-method f
+				      ((newton-method f) init)
+				      (1- times)))))))
 
 ; Examples:
-; (sqrt 2) => ((newton-method (lambda (x) (- (* x x) 2))) 1)
+; (sqrt 4) => ((newton-method (lambda (x) (- (* x x) 4))) 1)
 ; and repeat setting the value of x
 ; or a more convenient way:
-; (sqrt 2) => (repeated-newton-method (lambda (x) (- (* x x) 2)) 1 10)
+; (sqrt 4) => (repeated-newton-method (lambda (x) (- (* x x) 4)) 1 10)
