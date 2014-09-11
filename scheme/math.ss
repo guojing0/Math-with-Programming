@@ -25,7 +25,7 @@
     (letrec ((tolerance (lambda (v1 v2)
 			  (< (abs (- v1 v2)) 1e-16))))
       (if (tolerance init ((newton-method f) init))
-	  init
+	  init ; if v1 basically equals v2 then stop
 	  (if (zero? times)
 	      init
 	      (repeated-newton-method f
