@@ -13,7 +13,15 @@
 ; Examples:
 ; f(x) = x^3
 ; f'(5) => ((deriv (lambda (x) (* x x x))) 5)
-; f''(5) => ((deriv (deriv (lambda (x) (* x x x)))) 5)
+
+(define sec-deriv
+  (lambda (f)
+    (lambda (x)
+      ((deriv (deriv f)) x))))
+
+; Examples:
+; f(x) = x^3
+; f''(5) => ((sec-deriv (lambda (x) (* x x x))) 5)
 
 (define newton-method
   (lambda (f)
@@ -34,5 +42,7 @@
 ; and repeat setting the value of x
 ; or a more convenient way:
 ; (sqrt 4) => (repeated-newton-method (lambda (x) (- (* x x) 4)) 1 10)
+
+;;; SEC-DERIV-TEST, MAX-OR-MIN todo
 
 ;;; ITER-COUNTER function needs constructing
