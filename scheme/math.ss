@@ -22,6 +22,16 @@
 ;; f(x) = x^3
 ;; f''(5) => ((sec-deriv (lambda (x) (* x x x))) 5)
 
+(define linearization
+  (lambda (f)
+    (lambda (a h)
+      (+ (f a) (* ((deriv f) a) h)))))
+
+;; Examples:
+;; f(a + h) ~= f(a) + f'(a)h
+;; while number "a" has to be sqrted by a integer
+;; (sqrt 60) => ((linearization (lambda (x) (sqrt x))) 64 -4)
+
 (define newton-method
   (lambda (f)
     (lambda (x) ; x is the initial guess
