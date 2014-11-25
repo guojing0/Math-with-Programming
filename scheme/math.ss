@@ -38,13 +38,14 @@
       (- x (/ (f x) ((deriv f) x))))))
 
 (define repeated-newton-method
-  (lambda (f init)
-    (letrec ((tolerance (lambda (v1 v2)
-			  (< (abs (- v1 v2)) 1e-12)))
-	     (eval-newton-method ((newton-method f) init)))
-      (if (tolerance init eval-newton-method)
-	  init ; if v1 basically equals v2 then stop
-	  (repeated-newton-method f eval-newton-method)))))
+  (lambda (f)
+    (lambda (init)
+      (letrec ((tolerance (lambda (v1 v2)
+			    (< (abs (- v1 v2)) 1e-12)))
+	       (eval-newton-method ((newton-method f) init)))
+	(if (tolerance init eval-newton-method)
+	    init ; if v1 basically equals v2 then stop
+	    ((repeated-newton-method f) eval-newton-method))))))
 
 ;; Examples:
 ;; (sqrt 4) => ((newton-method (lambda (x) (- (* x x) 4))) 1)
